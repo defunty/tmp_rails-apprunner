@@ -1,0 +1,12 @@
+<h1>Hello, World!</h1>
+
+
+<%= form_with url: file_path(1) do |f| %>
+  <%= f.file_field :fine_name, class: 'js-file-input', multiple: true %>
+<% end %>
+
+<div class="js-file-preview">
+
+</div>
+
+<%= javascript_include_tag params[:controller] %>
