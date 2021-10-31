@@ -1,0 +1,28 @@
+# SQLite. Versions 3.8.0 and up are supported.
+#   gem install sqlite3
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'sqlite3'
+#
+default: &default
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+  port: 5432
+  host: db
+  username: <%= ENV.fetch('POSTGRES_USERNAME', 'root') %>
+  password: <%= ENV.fetch('POSTGRES_PASSWORD', 'password') %>
+
+development:
+  <<: *default
+  database: rails6_docker_template_development
+  # dockerを使わない場合、環境変数に'localhost'を追加する
+  host: <%= ENV.fetch('DB_HOST', 'db') %>
+
+test:
+  <<: *default
+  database: rails6_docker_template_test
+
+production:
+  <<: *default
+  database: rails6_docker_template_production
